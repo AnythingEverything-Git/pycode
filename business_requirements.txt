@@ -1,0 +1,166 @@
+#Business Requirement Document (BRD)
+
+Project Name: FinSmart – Digital Banking and Payments Platform
+Version: 1.0
+Date: 04-Aug-2025
+Prepared By: Business Analysis Team
+
+
+
+1. Executive Summary
+
+FinSmart is a digital banking and payments platform that enables users to:
+
+* Open and managemulti-currency digital accounts
+*Transfer funds domestically and internationally
+*Pay bills andperform UPI transactions
+*Monitor financial health viaAI-powered analytics
+
+The platform must behighly scalable,secure, andintegrated withthird-party banking APIs andfinancial institutions.
+It must supportmobile, web, and partner APIs.
+
+
+
+2. Business Objectives
+
+1. Launch adigital-first banking experience for 1M users in the first year
+2. Reducetransaction processing latency to < 200 ms per API call
+3. EnsurePCI-DSS & GDPR compliance
+4. Providemodular microservices architecture for:
+
+   * Independent scaling
+   * Fast feature releases
+   * Event-driven inter-service communication
+
+
+
+3. Scope
+
+#In-Scope
+
+* User registration, KYC, and authentication
+* Multi-currency wallet and fund transfers
+* UPI and card payment processing
+* AI-driven spending analytics and fraud detection
+* Role-based access control for Admin & Support
+
+#Out-of-Scope
+
+* Physical banking operations
+* Loan & credit card issuance (Phase 2 feature)
+
+
+
+4. Functional Requirements
+
+#4.1 User Management
+
+* Users canregister, verify KYC, andlog in via OAuth2 / JWT
+* Admin cansuspend, upgrade, or downgrade accounts
+
+#4.2 Wallet & Account Management
+
+* Multi-currency wallet withreal-time balance updates
+*Ledger microservice tracks all debit/credit transactions
+
+#4.3 Payments & Transfers
+
+*UPI, NEFT, RTGS, SWIFT transfers supported
+*Scheduled payments and recurring transfers
+
+#4.4 Analytics & Notifications
+
+* Spending analytics powered byAI microservice
+* Push notifications viaEmail, SMS, and Mobile App
+
+#4.5 Customer Support
+
+* In-app support chat integrated withticketing microservice
+*Role-based access control (RBAC) for support agents
+
+
+
+5. Non-Functional Requirements (NFRs)
+
+1.Performance: API latency < 200 ms
+2.Scalability: Auto-scale up to 1M users
+3.Availability: 99.99% uptime with active-active DR
+4.Security:
+
+   *OAuth2 + JWT authentication
+   *Encryption: TLS 1.3 + AES-256
+   *PCI-DSS compliance for payments
+5.Observability:
+
+   * Centralized logging usingELK Stack
+   * Distributed tracing withOpenTelemetry
+6.Maintainability: Microservices must supportCI/CD with Blue-Green Deployment
+
+
+
+6. High-Level System Overview
+
+#Actors
+
+*End User (Mobile/Web)
+*Admin (Back-office portal)
+*External Banks & Payment Gateways
+*Fraud Monitoring System (External)
+
+#Key Microservices
+
+1.Auth Service – JWT, OAuth2, RBAC
+2.User Service – User profiles, KYC management
+3.Wallet Service – Multi-currency wallets
+4.Ledger Service – Transaction records and reconciliation
+5.Payment Service – UPI, NEFT, SWIFT integrations
+6.Notification Service – Email, SMS, Push
+7.Analytics Service – Spending patterns, fraud scoring
+8.Support Service – Ticketing and chat
+
+#Databases
+
+*UserDB – User profiles, credentials (encrypted)
+*WalletDB – Wallet balances
+*LedgerDB – Transaction ledger
+*AnalyticsDB – Spending & ML insights
+*SupportDB – Support tickets and logs
+
+#Message Broker
+
+*Kafka – Event-driven communication (TransactionEvents, FraudAlerts, Notifications)
+
+
+
+7. System Integrations
+
+1.UPI / Bank APIs via REST/ISO 20022
+2.Payment Gateways for card processing
+3.Fraud Detection System via Kafka + REST callbacks
+
+
+
+8. Reporting & Audit
+
+* Daily transaction reconciliation reports
+* Fraud alerts and spending pattern summaries
+* API usage metrics for admin dashboards
+
+
+
+9. Risks & Assumptions
+
+* High dependency onbanking APIs availability
+* Regulatory compliance updates may change requirements
+* AI fraud detection model accuracy improves over time
+
+
+
+10. Acceptance Criteria
+
+* Successfully process10,000 concurrent transactions without failures
+* Ensure99.99% uptime with automated failover
+* All transactions areencrypted and logged for audit
+
+
+
