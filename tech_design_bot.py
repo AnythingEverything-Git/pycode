@@ -5,7 +5,7 @@ from handler_pack import json_file_handler, image_generation_handler, doc_genera
 # ---------------------
 
 BRD_FILE = "business_requirements.txt"
-CHUNK_SIZE = 2000  # words per chunk
+CHUNK_SIZE = 3000  # words per chunk
 
 def load_brd(file_path):
     with open(file_path, "r", encoding="utf-8") as f:
